@@ -39,9 +39,15 @@ function RenderComments({comments}) {
     const renderCommentItem = ({item}) => {
         return (
             <View style={{margin: 10}}>
-                <Text style={{fontSize: 14}}>{item.text}</Text>
-                <Text style={{fontSize: 12}}>{item.rating} Stars</Text>
-                <Text style={{fontSize: 12}}>{`-- ${item.author}, ${item.date}`}</Text>
+                <Text style={{fontSize: 14}}>
+                    {item.text}
+                </Text>
+                <Text style={{fontSize: 12}}>
+                    {item.rating} Stars
+                </Text>
+                <Text style={{fontSize: 12}}>
+                    {`-- ${item.author}, ${item.date}`}
+                </Text>
             </View>
         );
     };
