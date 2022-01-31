@@ -5,7 +5,7 @@ import CampsiteInfo from './CampsiteInfoComponent';
 import About from './AboutComponent';
 import Contact from './ContactComponent';
 import Reservation from './ReservationComponent';
-// import Constants from 'expo-constants';
+import Constants from 'expo-constants';
 import { View, Platform, StyleSheet, Text, ScrollView, Image } from 'react-native';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createDrawerNavigator, DrawerItems } from 'react-navigation-drawer';
@@ -16,19 +16,9 @@ import { connect } from 'react-redux';
 import { fetchCampsites, fetchComments, fetchPromotions,
     fetchPartners } from '../redux/ActionCreators';
 
-
-const mapDispatchToProps = {
-        fetchCampsites,
-        fetchComments,
-        fetchPromotions,
-        fetchPartners
-    };
-    
-
 const DirectoryNavigator = createStackNavigator(
     {
-        Directory: { 
-            screen: Directory, 
+        Directory: { screen: Directory,
             navigationOptions: ({navigation}) => ({
                 headerLeft: <Icon
                     name='list'
@@ -39,7 +29,7 @@ const DirectoryNavigator = createStackNavigator(
             })
         },
         CampsiteInfo: { screen: CampsiteInfo }
-    }, 
+    },
     {
         initialRouteName: 'Directory',
         defaultNavigationOptions: {
@@ -164,9 +154,10 @@ const CustomDrawerContentComponent = props => (
     </ScrollView>
 );
 
+
 const MainNavigator = createDrawerNavigator(
     {
-        Home: { 
+        Home: {
             screen: HomeNavigator,
             navigationOptions: {
                 drawerIcon: ({tintColor}) => (
@@ -179,7 +170,7 @@ const MainNavigator = createDrawerNavigator(
                 )
             }
         },
-        Directory: { 
+        Directory: {
             screen: DirectoryNavigator,
             navigationOptions: {
                 drawerIcon: ({tintColor}) => (
@@ -191,11 +182,11 @@ const MainNavigator = createDrawerNavigator(
                     />
                 )
             }
-        }, 
-        Reservation: { 
+        },
+        Reservation: {
             screen: ReservationNavigator,
             navigationOptions: {
-                drawerlabel: 'Reserve Campsite',
+                drawerLabel: 'Reserve Campsite',
                 drawerIcon: ({tintColor}) => (
                     <Icon
                         name='tree'
@@ -205,10 +196,10 @@ const MainNavigator = createDrawerNavigator(
                     />
                 )
             }
-        }, 
+        },
         About: {
-             screen: AboutNavigator,
-             navigationOptions: {
+            screen: AboutNavigator,
+            navigationOptions: {
                 drawerLabel: 'About Us',
                 drawerIcon: ({tintColor}) => (
                     <Icon
@@ -220,7 +211,7 @@ const MainNavigator = createDrawerNavigator(
                 )
             }
         },
-        Contact: { 
+        Contact: {
             screen: ContactNavigator,
             navigationOptions: {
                 drawerLabel: 'Contact Us',
@@ -241,8 +232,14 @@ const MainNavigator = createDrawerNavigator(
     }
 );
 
-const AppNavigator = createAppContainer(MainNavigator);
+const AppNavigator = createAppContainer(MainNavigator)
 
+const mapDispatchToProps = {
+    fetchCampsites,
+    fetchComments,
+    fetchPromotions,
+    fetchPartners
+};
 
 class Main extends Component {
 
@@ -253,12 +250,11 @@ class Main extends Component {
         this.props.fetchPartners();
     }
 
-   render() {
-        return( 
-            <View
-                style={{
-                    flex: 1,
-                    paddingTop: Platform.OS === 'ios' ? 0 : Constants.statusBarHeight
+    render() {
+        return (
+            <View style={{
+                flex: 1,
+                paddingTop: Platform.OS === 'ios' ? 0 : Constants.statusBarHeight
             }}>
                 <AppNavigator />
             </View>

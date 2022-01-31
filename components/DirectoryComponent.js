@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, FlatList, Text } from 'react-native';
+import { ListItem } from 'react-native-elements';
 import { Tile } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
@@ -26,7 +27,7 @@ class Directory extends Component {
                     caption={item.description}
                     featured
                     onPress={() => navigate('CampsiteInfo', { campsiteId: item.id })}
-                    imageSrc={{url: baseUrl + item.image}}
+                    imageSrc={{uri: baseUrl + item.image}}
                 />
             );
         };
@@ -41,7 +42,6 @@ class Directory extends Component {
                 </View>
             );
         }
-
         return (
             <FlatList
                 data={this.props.campsites.campsites}
